@@ -82,6 +82,7 @@ int main()
 
 		// block is 0.1 by 0.1 by 0.1m cube and centered at origin. 
 		// transform anchors to be placed at the two extremes of the sliding block (to come)
+        /*
 		GeometrySet& geometry = ground.updDisplayer()->updGeometrySet();
 		DisplayGeometry& anchor1 = geometry[1];
 		DisplayGeometry& anchor2 = geometry[2];
@@ -91,7 +92,7 @@ int main()
 		// reposition the anchors
 		anchor1.setTransform(Transform(Vec3(0, 0.05, 0.35)));
 		anchor2.setTransform(Transform(Vec3(0, 0.05, -0.35)));
-
+        */
 		// BLOCK BODY
 		Vec3 blockMassCenter(0);
 		Inertia blockInertia = blockMass*Inertia::brick(blockSideLength, blockSideLength, blockSideLength);

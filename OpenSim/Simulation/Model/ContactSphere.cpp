@@ -22,6 +22,7 @@
  * -------------------------------------------------------------------------- */
 
 #include "ContactSphere.h"
+using SimTK::Transform;
 
 namespace OpenSim {
 
@@ -84,7 +85,6 @@ void ContactSphere::setRadius(double radius)
 
 SimTK::ContactGeometry ContactSphere::createSimTKContactGeometry()
 {
-	_displayer.addGeometry(AnalyticSphere::createSphere(_radius));
     return SimTK::ContactGeometry::Sphere(_radius);
 }
 

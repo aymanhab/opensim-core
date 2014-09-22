@@ -119,7 +119,6 @@ public:
 
 protected:
     /** how to display the bushing */
-	VisibleObject _displayer;
 private:
 	// parser programs for efficiently evaluating the expressions
 	Lepton::ExpressionProgram MxProg, MyProg, MzProg, FxProg, FyProg, FzProg; 
@@ -277,7 +276,6 @@ private:
     //--------------------------------------------------------------------------
 	// Visible Object Support for Java Gui
 	//--------------------------------------------------------------------------
-	virtual VisibleObject* getDisplayer() const;
 	virtual void updateDisplayer(const SimTK::State& s);
 	virtual void updateGeometry(const SimTK::State& s);
 	void setNull();

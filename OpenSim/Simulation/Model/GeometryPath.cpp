@@ -25,6 +25,7 @@
 // INCLUDES
 //=============================================================================
 #include "GeometryPath.h"
+#include <OpenSim/Common/Geometry.h>
 #include <OpenSim/Simulation/SimbodyEngine/Coordinate.h>
 #include <OpenSim/Simulation/SimbodyEngine/Body.h>
 #include <OpenSim/Simulation/SimbodyEngine/SimbodyEngine.h>
@@ -70,12 +71,6 @@ GeometryPath::GeometryPath() :
  */
 GeometryPath::~GeometryPath()
 {
-    VisibleObject* disp;
-    if ((disp = &upd_display())) {
-        // Free up allocated geometry objects
-        disp->freeGeometry();
-    }
-
 	delete _maSolver;
 }
 
@@ -113,14 +108,8 @@ void GeometryPath::connectToModel(Model& aModel) {
 
     for (int i = 0; i < get_PathPointSet().getSize(); i++){
         upd_PathPointSet().get(i).connectToModelAndPath(aModel, *this);
-        // GeometryPath points depend on the path itself
-        // Removing the dependency since path points now display as part of the
-        // path itself, extracted directly from the set of line segments
-        // representing the path path. -Ayman 02/07
-        //getDisplayer()->addDependent(get_PathPointSet().get(i)->getDisplayer());
     }
 
-    upd_display().setOwner(this);
 }
 
 //_____________________________________________________________________________
@@ -228,8 +217,6 @@ void GeometryPath::constructProperties()
 
     constructProperty_PathWrapSet(PathWrapSet());
     
-    constructProperty_display(VisibleObject());
-
     Vec3 defaultColor = SimTK::White;
     constructProperty_default_color(defaultColor);
 }
@@ -455,7 +442,7 @@ getCurrentDisplayPath(const SimTK::State& s) const
  */
 void GeometryPath::updateGeometrySize(const SimTK::State& s) const
 {
-    const int numberOfSegments = get_display().countGeometry();
+/*    const int numberOfSegments = get_display().countGeometry();
     const Array<PathPoint*>& currentDisplayPath = 
         getCacheVariable<Array<PathPoint*> >(s, "current_display_path");
 
@@ -489,7 +476,7 @@ void GeometryPath::updateGeometrySize(const SimTK::State& s) const
                     (mutableThis->upd_display().getGeometry(segment));
             }
         }
-    }
+    }*/
 }
 
 //_____________________________________________________________________________
@@ -506,7 +493,7 @@ void GeometryPath::updateGeometryLocations(const SimTK::State& s) const
         getCacheVariable<Array<PathPoint*> >(s, "current_display_path");
 
     GeometryPath * mutableThis = const_cast<GeometryPath*>(this);
-
+    /**
     for (int i = 0; i < currentDisplayPath.getSize(); i++){
         PathPoint* nextPoint =currentDisplayPath.get(i);
         // xform point to global frame
@@ -524,7 +511,7 @@ void GeometryPath::updateGeometryLocations(const SimTK::State& s) const
                                 (mutableThis->upd_display().getGeometry(i-1));
             g->setPoints(previousPointGlobalLocation, globalLocation);
         }
-    }
+    }*/
 }
 
 //_____________________________________________________________________________

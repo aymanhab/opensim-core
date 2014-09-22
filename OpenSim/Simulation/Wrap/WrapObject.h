@@ -28,8 +28,8 @@
 #include <iostream>
 #include <string>
 #include <OpenSim/Simulation/osimSimulationDLL.h>
+#include <OpenSim/Common/Geometry.h>
 #include <OpenSim/Common/Object.h>
-#include <OpenSim/Common/VisibleObject.h>
 #include <OpenSim/Common/PropertyBool.h>
 #include <OpenSim/Common/PropertyDblArray.h>
 #include <OpenSim/Common/PropertyStr.h>
@@ -44,7 +44,6 @@
 
 namespace OpenSim {
 
-class VisibleObject;
 class Body;
 class PathPoint;
 class PathWrap;
@@ -100,10 +99,6 @@ protected:
 	PropertyStr _quadrantNameProp;
 	std::string& _quadrantName;
 
-	// Support for Display
-	PropertyObj _displayerProp;
-	VisibleObject &_displayer;
-
 	WrapQuadrant _quadrant;
 	int _wrapAxis;
 	int _wrapSign;
@@ -157,8 +152,6 @@ public:
 	virtual int wrapLine(const SimTK::State& s, SimTK::Vec3& aPoint1, SimTK::Vec3& aPoint2,
 		const PathWrap& aPathWrap, WrapResult& aWrapResult, bool& aFlag) const = 0;
 #endif
-	// Visible Object Support
-	virtual VisibleObject* getDisplayer() const { return &_displayer; };
 	virtual void updateGeometry() {};
 
 protected:

@@ -596,10 +596,6 @@ getRecordValues(const SimTK::State& state) const
 /**
  * Get the visible object used to represent the spring.
  */
-VisibleObject* ExpressionBasedBushingForce::getDisplayer() const
-{ 
-	return const_cast<VisibleObject*>(&_displayer); 
-}
 
 void ExpressionBasedBushingForce::updateDisplayer(const SimTK::State& s)
 {
@@ -610,7 +606,7 @@ void ExpressionBasedBushingForce::updateDisplayer(const SimTK::State& s)
                                                  globalLocation1);
 	_model->getSimbodyEngine().transformPosition(s, body2, get_location_body_2(),
                                                  globalLocation2);
-
+    /*
 	if (_displayer.countGeometry()==0){
 		Geometry *g = new LineGeometry();
 		g->setFixed(false);
@@ -618,15 +614,17 @@ void ExpressionBasedBushingForce::updateDisplayer(const SimTK::State& s)
 	}
 	((LineGeometry *)_displayer.getGeometry(0))->
         setPoints(globalLocation1, globalLocation2);
+        */
 }
 
 void ExpressionBasedBushingForce::updateGeometry(const SimTK::State& s)
 {
+    /*
 	if (_displayer.countGeometry()==0){
 		Geometry *g = new LineGeometry();
 		g->setFixed(false);
 		_displayer.addGeometry(g);
-	}
+	} */
 	updateDisplayer(s);
 }
 

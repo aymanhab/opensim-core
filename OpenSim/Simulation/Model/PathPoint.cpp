@@ -30,6 +30,7 @@
 #include "GeometryPath.h"
 #include <OpenSim/Simulation/SimbodyEngine/SimbodyEngine.h> 
 #include <OpenSim/Simulation/Wrap/WrapObject.h>
+#include <OpenSim/Common/Geometry.h>
 
 //=============================================================================
 // STATICS
@@ -37,8 +38,7 @@
 using namespace std;
 using namespace OpenSim;
 using SimTK::Vec3;
-
-Geometry *PathPoint::_defaultGeometry= AnalyticSphere::createSphere(0.005);
+using SimTK::Transform;
 
 //=============================================================================
 // CONSTRUCTOR(S) AND DESTRUCTOR
@@ -92,7 +92,6 @@ PathPoint::PathPoint(const PathPoint &aPoint) :
 void PathPoint::copyData(const PathPoint &aPoint)
 {
 	_location = aPoint._location;
-	_displayer = aPoint._displayer;
 	_bodyName = aPoint._bodyName;
 	_body = aPoint._body;
 	_path = aPoint._path;
@@ -166,7 +165,7 @@ void PathPoint::updateGeometry()
 {
 	Transform position;
 	position.setP(_location);
-	updDisplayer()->setTransform(position);
+	//updDisplayer()->setTransform(position);
 }
 //=============================================================================
 // OPERATORS

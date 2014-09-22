@@ -109,7 +109,6 @@ public:
 
 protected:
     /** how to display the bushing */
-	VisibleObject _displayer;
 private:
 	// underlying SimTK system elements
 	// the mobilized bodies involved
@@ -230,7 +229,6 @@ private:
     //--------------------------------------------------------------------------
 	// Visible Object Support for Java Gui
 	//--------------------------------------------------------------------------
-	virtual VisibleObject* getDisplayer() const;
 	virtual void updateDisplayer(const SimTK::State& s);
 	virtual void updateGeometry(const SimTK::State& s);
 	void setNull();

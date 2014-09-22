@@ -24,6 +24,7 @@
  * -------------------------------------------------------------------------- */
 
 #include <OpenSim/Common/Object.h>
+#include <OpenSim/Common/PropertyTransform.h>
 #include <OpenSim/Simulation/osimSimulationDLL.h>
 #include <OpenSim/Simulation/Model/Model.h>
 #include <OpenSim/Simulation/Model/Force.h>
@@ -104,7 +105,7 @@ public:
         }
 	// Transforms
     void transformPosition(const Body& body, double offset[], double gOffset[]);
-    Transform getTransform(const Body& body);
+    SimTK::Transform getTransform(const Body& body);
 	void transform(const Body& ground, double d[], Body& body, double dragVectorBody[]);
 	// Coordinates
     double getValue(const Coordinate& coord);

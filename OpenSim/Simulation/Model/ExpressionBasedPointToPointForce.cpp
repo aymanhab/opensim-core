@@ -108,11 +108,6 @@ void ExpressionBasedPointToPointForce::constructProperties()
 /**
  * Get the visible object used to represent the spring.
  */
-VisibleObject* ExpressionBasedPointToPointForce::getDisplayer() const
-{ 
-	return const_cast<VisibleObject*>(&_displayer); 
-}
-
 void ExpressionBasedPointToPointForce::updateDisplayer(const SimTK::State& s)
 {
 	SimTK::Vec3 globalLocation1, globalLocation2;
@@ -123,22 +118,22 @@ void ExpressionBasedPointToPointForce::updateDisplayer(const SimTK::State& s)
 	_model->getSimbodyEngine().transformPosition(s, body2, getPoint2(),
                                                  globalLocation2);
 
-	if (_displayer.countGeometry()==0){
+/*	if (_displayer.countGeometry()==0){
 		Geometry *g = new LineGeometry();
 		g->setFixed(false);
 		_displayer.addGeometry(g);
 	}
 	((LineGeometry *)_displayer.getGeometry(0))->
-        setPoints(globalLocation1, globalLocation2);
+        setPoints(globalLocation1, globalLocation2);*/
 }
 
 void ExpressionBasedPointToPointForce::updateGeometry(const SimTK::State& s)
 {
-	if (_displayer.countGeometry()==0){
+/*	if (_displayer.countGeometry()==0){
 		Geometry *g = new LineGeometry();
 		g->setFixed(false);
 		_displayer.addGeometry(g);
-	}
+	} */
 	updateDisplayer(s);
 }
 

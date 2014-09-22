@@ -209,8 +209,6 @@ void simulateMuscle(
     // Get a reference to the model's ground body
     Body& ground = model.getGroundBody();
     ground.addDisplayGeometry("box.vtp");
-    ground.updDisplayer()
-        ->setScaleFactors(Vec3(anchorWidth, anchorWidth, 2*anchorWidth));
 
     OpenSim::Body * ball = new OpenSim::Body("ball", 
                         ballMass , 
@@ -218,7 +216,6 @@ void simulateMuscle(
                         ballMass*SimTK::Inertia::sphere(ballRadius));
     
     ball->addDisplayGeometry("sphere.vtp");
-    ball->updDisplayer()->setScaleFactors(Vec3(2*ballRadius));
     // ball connected  to ground via a slider along X
     double xSinG = optimalFiberLength*cos(pennationAngle)+tendonSlackLength;
 

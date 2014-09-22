@@ -275,10 +275,6 @@ void PathSpring::computeForce(const SimTK::State& s,
 /**
  * Get the visible object used to represent the PathSpring.
  */
-const VisibleObject* PathSpring::getDisplayer() const
-{ 
-	return getGeometryPath().getDisplayer(); 
-}
 
 //_____________________________________________________________________________
 /**

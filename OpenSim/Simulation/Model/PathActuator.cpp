@@ -288,15 +288,6 @@ void PathActuator::updateFromXMLNode(SimTK::Xml::Element& aNode, int versionNumb
 
 //_____________________________________________________________________________
 /**
- * Get the visible object used to represent the muscle.
- */
-const VisibleObject* PathActuator::getDisplayer() const
-{ 
-	return getGeometryPath().getDisplayer(); 
-}
-
-//_____________________________________________________________________________
-/**
  * Update the visible object used to represent the muscle.
  */
 void PathActuator::updateDisplayer(const SimTK::State& s) const

@@ -24,6 +24,7 @@
  * -------------------------------------------------------------------------- */
 
 #include "SimTKcommon.h"
+#include "osimCommonDLL.h"
 
 // Geometry.h
 // Authors: Ayman Habib
@@ -109,11 +110,11 @@ public:
 	}
 	// Mark geometry as Fixed (so that vtk resources are allocated once,
 	// potentially use the same vtkGeometry more than once.)
-	virtual void setFixed(bool aFixed)
+	void setFixed(bool aFixed)
 	{
 		_fixed = aFixed;
 	}
-	virtual bool getFixed() const
+	bool getFixed() const
 	{
 		return _fixed;
 	}

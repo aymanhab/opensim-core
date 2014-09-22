@@ -31,11 +31,10 @@
 #include <math.h>
 #include <OpenSim/Simulation/osimSimulationDLL.h>
 #include <OpenSim/Common/Array.h>
-#include <OpenSim/Common/Geometry.h>
-#include <OpenSim/Common/VisibleObject.h>
 #include <OpenSim/Common/PropertyDblArray.h>
 #include <OpenSim/Common/PropertyDblVec.h>
 #include <OpenSim/Common/PropertyStr.h>
+#include <OpenSim/Common/Object.h>
 
 #ifdef SWIG
 	#ifdef OSIMSIMULATION_API
@@ -78,15 +77,10 @@ protected:
 	PropertyStr _bodyNameProp;
    std::string &_bodyName;
 
-	// Support for Display
-	VisibleObject _displayer;
 
 	/* const*/ OpenSim::Body *_body; // Not const anymore since the body's displayer is not const
 
 	GeometryPath* _path; // the path that owns this location point
-
-	/** A temporary kluge until the default mechanism is working */
-	static Geometry *_defaultGeometry;
 
 //=============================================================================
 // METHODS
@@ -141,9 +135,6 @@ public:
 	virtual SimTK::Vec3 getdPointdQ(const SimTK::State& s) const
 	    { return SimTK::Vec3(0); }
 
-	// Visible Object Support
-	virtual const VisibleObject* getDisplayer() const { return &_displayer; }
-	virtual VisibleObject*	updDisplayer() { return &_displayer; };
 	virtual void updateGeometry();
 
 	// Utility

@@ -65,7 +65,7 @@ int main()
 		Inertia linkageInertia = Inertia::cylinderAlongY(linkageDiameter/2.0, linkageLength/2.0);
 
 		OpenSim::Body* linkage1 = new OpenSim::Body("linkage1", linkageMass, linkageMassCenter, linkageMass*linkageInertia);
-
+        /*
 		// Graphical representation
 		linkage1->addDisplayGeometry("cylinder.vtp");
 		//This cylinder.vtp geometry is 1 meter tall, 1 meter diameter.  Scale and shift it to look pretty
@@ -76,7 +76,7 @@ int main()
 		linkage1->addDisplayGeometry("sphere.vtp");
 		//This sphere.vtp is 1 meter in diameter.  Scale it.
 		geometry[1].setScaleFactors(Vec3(0.1));
-		
+		*/
 		// Creat a second linkage body
 		OpenSim::Body* linkage2 = new OpenSim::Body(*linkage1);
 		linkage2->setName("linkage2");
@@ -88,7 +88,7 @@ int main()
 		OpenSim::Body *block = new OpenSim::Body("block", blockMass, blockMassCenter, blockInertia);
 		block->addDisplayGeometry("block.vtp");
 		//This block.vtp is 0.1x0.1x0.1 meters.  scale its appearance
-		block->updDisplayer()->updGeometrySet()[0].setScaleFactors(Vec3(2.0));
+		//block->updDisplayer()->updGeometrySet()[0].setScaleFactors(Vec3(2.0));
 
 		// Create 1 degree-of-freedom pin joints between the bodies to creat a kinematic chain from ground through the block
 		

@@ -25,7 +25,6 @@
 
 // INCLUDE
 #include <OpenSim/Simulation/Model/RigidFrame.h>
-#include <OpenSim/Common/VisibleObject.h>
 #include <OpenSim/Simulation/Wrap/WrapObjectSet.h>
 
 namespace OpenSim {
@@ -62,8 +61,6 @@ public:
 
 	OpenSim_DECLARE_UNNAMED_PROPERTY(WrapObjectSet,
 		"Set of wrap objects fixed to this body that GeometryPaths can wrap over.");
-    OpenSim_DECLARE_UNNAMED_PROPERTY(VisibleObject,
-        "For visualization in the Simbody visualizer or OpenSim GUI.");
 	/**@}**/
 
 //=============================================================================
@@ -108,9 +105,6 @@ public:
 	void getScaleFactors(SimTK::Vec3& aScaleFactors) const;
 
 	virtual void addDisplayGeometry(const std::string &aGeometryFileName);
-
-	const VisibleObject* getDisplayer() const { return &get_VisibleObject(); }
-	VisibleObject* updDisplayer() { return &upd_VisibleObject(); }
 
 	const SimTK::MobilizedBodyIndex getIndex() const {return _index;};
 	

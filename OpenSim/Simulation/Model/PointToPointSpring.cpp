@@ -99,14 +99,6 @@ void PointToPointSpring::constructProperties()
 	constructProperty_rest_length(0.0);
 }
 
-//_____________________________________________________________________________
-/**
- * Get the visible object used to represent the spring.
- */
-VisibleObject* PointToPointSpring::getDisplayer() const
-{ 
-	return const_cast<VisibleObject*>(&_displayer); 
-}
 
 void PointToPointSpring::updateDisplayer(const SimTK::State& s)
 {
@@ -117,23 +109,23 @@ void PointToPointSpring::updateDisplayer(const SimTK::State& s)
                                                  globalLocation1);
 	_model->getSimbodyEngine().transformPosition(s, body2, getPoint2(),
                                                  globalLocation2);
-
+    /**
 	if (_displayer.countGeometry()==0){
 		Geometry *g = new LineGeometry();
 		g->setFixed(false);
 		_displayer.addGeometry(g);
 	}
 	((LineGeometry *)_displayer.getGeometry(0))->
-        setPoints(globalLocation1, globalLocation2);
+        setPoints(globalLocation1, globalLocation2);*/
 }
 
 void PointToPointSpring::updateGeometry(const SimTK::State& s)
 {
-	if (_displayer.countGeometry()==0){
+/*	if (_displayer.countGeometry()==0){
 		Geometry *g = new LineGeometry();
 		g->setFixed(false);
 		_displayer.addGeometry(g);
-	}
+	}*/
 	updateDisplayer(s);
 }
 

@@ -24,7 +24,6 @@
  * -------------------------------------------------------------------------- */
 
 #include "Force.h"
-#include <OpenSim/Common/VisibleObject.h>
 #include <Vendors/lepton/include/Lepton.h>
 
 //==============================================================================
@@ -161,7 +160,6 @@ public:
 	//--------------------------------------------------------------------------
 	// Visible Object Support
 	//--------------------------------------------------------------------------
-	VisibleObject* getDisplayer() const;
 	void updateDisplayer(const SimTK::State& s);
 	void updateGeometry(const SimTK::State& s);
 
@@ -173,9 +171,6 @@ protected:
 	//-----------------------------------------------------------------------------
 	void connectToModel(Model& model) override;
 	void addToSystem(SimTK::MultibodySystem& system) const override;
-
-	/** how to display the Spring */
-	VisibleObject _displayer;
 
 private:
 	void setNull();

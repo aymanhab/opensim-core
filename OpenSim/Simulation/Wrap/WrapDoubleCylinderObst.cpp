@@ -164,10 +164,8 @@ void WrapDoubleCylinderObst::connectToModelAndBody(Model& aModel, OpenSim::Body&
 		throw Exception(errorMessage);
 	}
 
-    _displayer.freeGeometry();
 	AnalyticCylinder* cyl = new AnalyticCylinder(_radiusUcyl, _length);
 	setGeometryQuadrants(cyl);
-	_displayer.addGeometry(cyl);
 
 	// Check wrapUcylDirectionName
 	if (_wrapUcylDirectionName == "righthand" || _wrapUcylDirectionName == "right" || _wrapUcylDirectionName == "righthanded" || _wrapUcylDirectionName == "Righthand" || _wrapUcylDirectionName == "Right" || _wrapUcylDirectionName == "Righthanded")

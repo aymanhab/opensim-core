@@ -74,7 +74,6 @@ void Body::constructProperties()
 	constructProperty_mass_center(SimTK::Vec3(0));
 	constructProperty_inertia(SimTK::Vec6(0));
 	constructProperty_WrapObjectSet(WrapObjectSet());
-    constructProperty_VisibleObject(VisibleObject());
 }
 
 
@@ -154,7 +153,7 @@ void Body::addToSystem(SimTK::MultibodySystem& system) const
  */
 void Body::addDisplayGeometry(const std::string &aGeometryFileName)
 {
-	updDisplayer()->setGeometryFileName(updDisplayer()->getNumGeometryFiles(), aGeometryFileName);
+	//updDisplayer()->setGeometryFileName(updDisplayer()->getNumGeometryFiles(), aGeometryFileName);
 }
 
 
@@ -238,14 +237,14 @@ void Body::scale(const SimTK::Vec3& aScaleFactors, bool aScaleMass)
 		upd_WrapObjectSet().get(i).scale(aScaleFactors);
 
 	SimTK::Vec3 oldScaleFactors;
-	getDisplayer()->getScaleFactors(oldScaleFactors);
+	//getDisplayer()->getScaleFactors(oldScaleFactors);
 
 	for(int i=0; i<3; i++) {
 		upd_mass_center()[i] *= aScaleFactors[i];
 		oldScaleFactors[i] *= aScaleFactors[i];
 	}
 	// Update scale factors for displayer
-	updDisplayer()->setScaleFactors(oldScaleFactors);
+	//updDisplayer()->setScaleFactors(oldScaleFactors);
 
 	if (getName() != "ground")	// The following throws an exception if applied to ground.
 		scaleInertialProperties(aScaleFactors, aScaleMass);
@@ -453,7 +452,7 @@ void Body::getScaleFactors(SimTK::Vec3& scales) const
 {
 
 	SimTK::Vec3 scaleFactors;
-	get_VisibleObject().getScaleFactors(scaleFactors);
+	//get_VisibleObject().getScaleFactors(scaleFactors);
 
 	scales = scaleFactors;
 

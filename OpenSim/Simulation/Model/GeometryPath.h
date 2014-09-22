@@ -28,7 +28,6 @@
 #include <OpenSim/Simulation/osimSimulationDLL.h>
 #include "OpenSim/Simulation/Model/ModelComponent.h"
 #include <OpenSim/Common/ScaleSet.h>
-#include <OpenSim/Common/VisibleObject.h>
 #include "PathPointSet.h"
 #include <OpenSim/Simulation/Wrap/PathWrapSet.h>
 #include <OpenSim/Simulation/MomentArmSolver.h>
@@ -64,8 +63,6 @@ OpenSim_DECLARE_CONCRETE_OBJECT(GeometryPath, ModelComponent);
 //=============================================================================
 private:
 	OpenSim_DECLARE_UNNAMED_PROPERTY(PathPointSet, "The set of points defining the path");
-
-	OpenSim_DECLARE_PROPERTY(display, VisibleObject, "Used to display the path in the 3D window");
 
 	OpenSim_DECLARE_UNNAMED_PROPERTY(PathWrapSet, "The wrap objecs that are associated with this path");
 	
@@ -183,9 +180,6 @@ public:
 	//--------------------------------------------------------------------------
 	// Visible Object Support
 	//--------------------------------------------------------------------------
-	virtual const VisibleObject* getDisplayer() const { 
-		return &get_display(); 
-	}
 	
 	void updateDisplayer(const SimTK::State& s) const override;
 

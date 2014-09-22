@@ -132,11 +132,9 @@ void WrapEllipsoid::connectToModelAndBody(Model& aModel, OpenSim::Body& aBody)
 		string errorMessage = "Error: dimensions for WrapEllipsoid " + getName() + " were either not specified, or are negative.";
 		throw Exception(errorMessage);
 	}
-    _displayer.freeGeometry();
 	AnalyticEllipsoid* ellipsoid = new AnalyticEllipsoid();
 	ellipsoid->setEllipsoidParams(_dimensions[0], _dimensions[1], _dimensions[2]);
 	setGeometryQuadrants(ellipsoid);
-	_displayer.addGeometry(ellipsoid);
 }
 
 //_____________________________________________________________________________

@@ -24,7 +24,6 @@
  * -------------------------------------------------------------------------- */
 
 #include "Force.h"
-#include <OpenSim/Common/VisibleObject.h>
 
 //==============================================================================
 //==============================================================================
@@ -82,7 +81,6 @@ public:
 	//--------------------------------------------------------------------------
 	// Visible Object Support
 	//--------------------------------------------------------------------------
-	virtual VisibleObject* getDisplayer() const;
 	virtual void updateDisplayer(const SimTK::State& s);
 	virtual void updateGeometry(const SimTK::State& s);
 	
@@ -139,8 +137,6 @@ public:
 	virtual OpenSim::Array<double> getRecordValues(const SimTK::State& state) const ;
 
 protected:
-	/** how to display the Spring */
-	VisibleObject _displayer;
 
 private:
 	void setNull();
