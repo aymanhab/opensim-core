@@ -29,7 +29,6 @@
 #include "GCVSplineSet.h"
 #include "ScaleSet.h"
 #include "GCVSpline.h"
-#include "Geometry.h"
 
 #include "Scale.h"
 #include "SimmSpline.h"
@@ -95,7 +94,6 @@ OSIMCOMMON_API void RegisterTypes_osimCommon()
 	// To support older type name of "natCubicSpline"
 	Object::renameType("natCubicSpline", "SimmSpline");
 
-    AnalyticSphere as;
   } catch (const std::exception& e) {
     std::cerr 
         << "ERROR during osimCommon Object registration:\n"
