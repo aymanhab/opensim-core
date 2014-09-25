@@ -154,6 +154,9 @@ void Body::addToSystem(SimTK::MultibodySystem& system) const
 void Body::addDisplayGeometry(const std::string &aGeometryFileName)
 {
 	//updDisplayer()->setGeometryFileName(updDisplayer()->getNumGeometryFiles(), aGeometryFileName);
+    if (getProperty_GeometryList().empty())
+        updProperty_GeometryList().adoptAndAppendValue(new GeometrySet());
+    upd_GeometryList().adoptAndAppend(new MeshGeometry(aGeometryFileName));
 }
 
 
