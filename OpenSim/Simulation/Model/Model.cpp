@@ -336,11 +336,6 @@ SimTK::State& Model::initializeState() {
     // geometry placements are frozen.
     getMultibodySystem().realize(_workingState, Stage::Instance);
 
-    // We can now collect up all the fixed geometry, which can depend only
-    // on instance variable, not on configuration.
-    if (getUseVisualizer())
-        _modelViz->collectFixedGeometry(_workingState);
-
     // Realize the initial configuration in preparation for assembly. This
     // initial configuration does not necessarily satisfy constraints.
     getMultibodySystem().realize(_workingState, Stage::Position);
@@ -355,6 +350,9 @@ SimTK::State& Model::initializeState() {
 	// Do the assembly
     createAssemblySolver(_workingState);
 	assemble(_workingState);
+    // We can now collect up all the fixed geometry, which needs full configuration.
+    if (getUseVisualizer())
+        _modelViz->collectFixedGeometry(_workingState);
 
 	return _workingState;
 }

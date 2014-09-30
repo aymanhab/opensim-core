@@ -34,19 +34,19 @@ namespace OpenSim {
 //==============================================================================
 ModelComponent::ModelComponent() : _model(NULL) 
 {
-    constructProperty_GeometryList();
+    constructProperty_GeometrySet();
 }
 
 ModelComponent::ModelComponent(const std::string& fileName, bool updFromXMLNode)
 :   Component(fileName, updFromXMLNode), _model(NULL)
 {
-    constructProperty_GeometryList();
+    constructProperty_GeometrySet();
 }
 
 ModelComponent::ModelComponent(SimTK::Xml::Element& element) 
 :   Component(element), _model(NULL)
 {
-    constructProperty_GeometryList();
+    constructProperty_GeometrySet();
 }
 
 const Model& ModelComponent::getModel() const
@@ -106,8 +106,6 @@ getDefaultSubsystem() const
 const SimTK::DefaultSystemSubsystem& ModelComponent::
 updDefaultSubsystem()
 {   return updModel().updDefaultSubsystem(); }
-
-
 
 
 } // end of namespace OpenSim

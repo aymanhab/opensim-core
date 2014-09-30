@@ -151,12 +151,16 @@ void Body::addToSystem(SimTK::MultibodySystem& system) const
  *
  * @param aGeometryFileName Geometry filename.
  */
-void Body::addDisplayGeometry(const std::string &aGeometryFileName)
+OpenSim::Geometry& Body::addMeshGeometry(const std::string& aGeometryFileName, const SimTK::Vec3 scale)
 {
 	//updDisplayer()->setGeometryFileName(updDisplayer()->getNumGeometryFiles(), aGeometryFileName);
-    if (getProperty_GeometryList().empty())
-        updProperty_GeometryList().adoptAndAppendValue(new GeometrySet());
-    upd_GeometryList().adoptAndAppend(new MeshGeometry(aGeometryFileName));
+    if (getProperty_GeometrySet().empty())
+        updProperty_GeometrySet().adoptAndAppendValue(new GeometrySet());
+    MeshGeometry* geom = new MeshGeometry(aGeometryFileName);
+    geom->set_scale_factors(scale);
+    geom->set_frame_name(getName());
+    upd_GeometrySet().adoptAndAppend(geom);
+    return *geom;
 }
 
 

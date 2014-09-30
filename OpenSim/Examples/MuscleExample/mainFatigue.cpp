@@ -65,9 +65,9 @@ int main()
 		OpenSim::Body& ground = osimModel.getGroundBody();
 
 		// Add display geometry to the ground to visualize in the GUI
-		ground.addDisplayGeometry("ground.vtp");
-		ground.addDisplayGeometry("anchor1.vtp");
-		ground.addDisplayGeometry("anchor2.vtp");
+		ground.addMeshGeometry("ground.vtp");
+		ground.addMeshGeometry("anchor1.vtp");
+		ground.addMeshGeometry("anchor2.vtp");
 
 		// BLOCK BODY
 
@@ -82,7 +82,7 @@ int main()
 			blockMassCenter, blockInertia);
 
 		// Add display geometry to the block to visualize in the GUI
-		block->addDisplayGeometry("block.vtp");
+		block->addMeshGeometry("block.vtp");
 
 		// FREE JOINT
 
