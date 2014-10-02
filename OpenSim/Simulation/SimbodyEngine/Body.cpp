@@ -159,10 +159,15 @@ OpenSim::Geometry& Body::addMeshGeometry(const std::string& aGeometryFileName, c
     MeshGeometry* geom = new MeshGeometry(aGeometryFileName);
     geom->set_scale_factors(scale);
     geom->set_frame_name(getName());
+    return addGeometry(geom);
+}
+
+OpenSim::Geometry& Body::addGeometry(OpenSim::Geometry* geom) {
+    if (getProperty_GeometrySet().empty())
+        updProperty_GeometrySet().adoptAndAppendValue(new GeometrySet());
     upd_GeometrySet().adoptAndAppend(geom);
     return *geom;
 }
-
 
 //_____________________________________________________________________________
 /**

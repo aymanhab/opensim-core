@@ -105,6 +105,7 @@ public:
 	void getScaleFactors(SimTK::Vec3& aScaleFactors) const;
 
     OpenSim::Geometry& addMeshGeometry(const std::string &aGeometryFileName, const SimTK::Vec3 scale = SimTK::Vec3(1));
+    OpenSim::Geometry& addGeometry(OpenSim::Geometry* aGeometry);
 
 	const SimTK::MobilizedBodyIndex getIndex() const {return _index;};
 	
