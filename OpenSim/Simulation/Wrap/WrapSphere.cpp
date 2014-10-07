@@ -124,7 +124,7 @@ void WrapSphere::connectToModelAndBody(Model& aModel, OpenSim::Body& aBody)
 		throw Exception(errorMessage);
 	}
 /*
-	AnalyticSphere* sphere = new AnalyticSphere(_radius);
+	Sphere* sphere = new Sphere(_radius);
 	setGeometryQuadrants(sphere);
 */
 }
