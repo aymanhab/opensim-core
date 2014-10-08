@@ -151,6 +151,11 @@ private:
 	void updateFromXMLNode(SimTK::Xml::Element& aNode,
 		int versionNumber = -1) override;
 
+    /** Convert old format Geometry version 3.2 to recent 4.0 format */
+    void convertDisplayGeometryToGeometryXML(SimTK::Xml::Element& aNode, 
+                                             const SimTK::Vec3& outerScaleFactors, 
+                                             const SimTK::Vec6& outerTransform, 
+                                             SimTK::Xml::Element& geomSetElement) const;
 	// mutable because fist get constructs tensor from properties
 	mutable SimTK::Inertia _inertia;
 
