@@ -170,7 +170,7 @@ generateDecorations(bool fixed, const ModelDisplayHints& hints,
 
     const SimbodyMatterSubsystem& matter = this->getModel().getMatterSubsystem();
 
-    this->updateDisplayer(state);
+    this->updateDisplayPath(state);
     
     const Array<PathPoint*>& points = this->getCurrentDisplayPath(state);
 
@@ -1360,13 +1360,8 @@ computeMomentArm(const SimTK::State& s, const Coordinate& aCoord) const
 
 //_____________________________________________________________________________
 /*
- * Update the visible object used to represent the path.
+ * Update the cache entry for current_display_path
  */
-void GeometryPath::updateDisplayer(const SimTK::State& s) const
-{
-    updateGeometry(s);
-}
-
 void GeometryPath::updateDisplayPath(const SimTK::State& s) const
 {
     Array<PathPoint*>& currentDisplayPath = 
@@ -1375,11 +1370,13 @@ void GeometryPath::updateDisplayPath(const SimTK::State& s) const
     // that have a NULL path pointer. This means that they were
     // created by an earlier call to updateDisplayPath() and are
     // not part of the _currentPath.
+/*
     for (int i=0; i<currentDisplayPath.getSize(); i++) {
         PathPoint* mp = currentDisplayPath.get(i);
         if (!mp->getPath())
-            delete mp;
+            ;
     }
+*/
     currentDisplayPath.setSize(0);
 
     const Array<PathPoint*>& currentPath =  

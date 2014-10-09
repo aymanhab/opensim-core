@@ -104,8 +104,9 @@ public:
 	void scaleMass(double aScaleFactor);
 	void getScaleFactors(SimTK::Vec3& aScaleFactors) const;
 
-    OpenSim::Geometry& addMeshGeometry(const std::string &aGeometryFileName, const SimTK::Vec3 scale = SimTK::Vec3(1));
-    OpenSim::Geometry& addGeometry(OpenSim::Geometry* aGeometry);
+    void addMeshGeometry(const std::string &aGeometryFileName, const SimTK::Vec3 scale = SimTK::Vec3(1));
+    void generateDecorations(bool fixed, const ModelDisplayHints& hints, const SimTK::State& state,
+        SimTK::Array_<SimTK::DecorativeGeometry>& appendToThis) const;
 
 	const SimTK::MobilizedBodyIndex getIndex() const {return _index;};
 	

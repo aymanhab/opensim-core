@@ -118,12 +118,9 @@ public:
     Model& updModel();
 
     /**
-     * In case the ModelComponent has a visual representation (VisualObject), override this method  
-     * to update it. This is typically done by recomputing anchor points and positions based 
-     * on transforms obtained from current state.
+     * Adopt the passed in Geometry and add it to the visualization of this ModelComponent
      */
-    virtual void updateDisplayer(const SimTK::State& s) const {};
-
+    void adoptGeometry(OpenSim::Geometry* aGeometry);
 
     // End of Model Component State Accessors.
     //@} 
