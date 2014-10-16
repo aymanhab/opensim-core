@@ -799,6 +799,7 @@ void Model::connectToModel(Model &model)
 
 	// Connections are properties so we need to mark these changes as final.
 	setObjectIsUpToDateWithProperties();
+
 }
 
 
@@ -970,6 +971,8 @@ void Model::setup()
 
 	//now connect the Model and all its subcomponents all up
 	connect(*this);
+
+    populatePathID("");
 }
 
 /**

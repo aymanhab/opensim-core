@@ -1345,8 +1345,23 @@ private:
 			_connectorsTable[connector.getName()] = ix;
 		}
     }
-    
+public:
+    const std::string& getPathID() const {
+        return _pathID;
+    }
+    void dumpPathID() const {
+         std::cout << getConcreteClassName() << ": ID= " << getPathID() << std::endl;
+         for (unsigned int i = 0; i<_components.size(); i++)
+             _components[i]->dumpPathID();
+
+     }
 protected:
+    // Populate _pathID for Component and all its children
+    void populatePathID(const std::string& parentPath) {
+        _pathID = parentPath+"/"+getName();
+        for (unsigned int i = 0; i<_components.size(); i++)
+            _components[i]->populatePathID(getPathID());
+    }
 	//Derived Components must create concrete StateVariables to expose their state 
 	//variables. When exposing state variables allocated by the underlying Simbody
 	//component (MobilizedBody, Constraint, Force, etc...) use its interface to 
@@ -1427,6 +1442,9 @@ protected:
 private:
 	class Connection;
 	
+    // PathID
+    std::string _pathID;
+
 	// Reference pointer to the system that this component belongs to.
 	SimTK::ReferencePtr<SimTK::MultibodySystem> _system;
 
