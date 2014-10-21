@@ -1358,7 +1358,10 @@ public:
 protected:
     // Populate _pathID for Component and all its children
     void populatePathID(const std::string& parentPath) {
-        _pathID = parentPath+"/"+getName();
+        if (getName().empty())
+            _pathID = parentPath + "/" + getConcreteClassName();
+        else
+            _pathID = parentPath+"/"+getName();
         for (unsigned int i = 0; i<_components.size(); i++)
             _components[i]->populatePathID(getPathID());
     }
