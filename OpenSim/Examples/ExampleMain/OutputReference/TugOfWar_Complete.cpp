@@ -32,7 +32,7 @@
 //==============================================================================
 //==============================================================================
 #include <OpenSim/OpenSim.h>
-
+#include <OpenSim/Simulation/Model/AppearanceMap.h>
 #include <ctime>    // for clock()
 
 using namespace OpenSim;
@@ -77,8 +77,11 @@ int main()
 		// add a checkered floor
 		ground.addMeshGeometry("checkered_floor.vtp");
 		// add anchors for the muscles to be fixed too
-        Geometry* leftAnchorGeometry = new Mesh("block.vtp");
-        Geometry* rightAnchorGeometry = new Mesh("block.vtp");
+        Geometry* leftAnchorGeometry = new Brick(SimTK::Vec3(0.05, 0.05, 0.05));
+        leftAnchorGeometry->updAppearance().set_color(SimTK::Vec3(0.0, 1.0, 0.0));
+        Geometry* rightAnchorGeometry = new Brick(SimTK::Vec3(0.05, 0.05, 0.05));
+        rightAnchorGeometry->updAppearance().set_color(SimTK::Vec3(1.0, 1.0, 0.0));
+        rightAnchorGeometry->updAppearance().set_opacity(0.5);
 
 		// block is 0.1 by 0.1 by 0.1m cube and centered at origin. 
 		// transform anchors to be placed at the two extremes of the sliding block (to come)
@@ -104,6 +107,7 @@ int main()
         cylFrame->setName("CylAnchor");
         osimModel.addFrame(cylFrame);
         cylGeometry->set_frame_name("CylAnchor");
+        cylGeometry->updAppearance().set_representation(2);
         ground.adoptGeometry(cylGeometry);
 
         Geometry* ellipsoidGeometry = new Ellipsoid(0.2, .7, .5);
@@ -278,8 +282,9 @@ int main()
 		muscle2->setDefaultFiberLength(optimalFiberLength);
 		muscle1->setDefaultFiberLength(optimalFiberLength);
 
+        osimModel.dumpPathID();
 		// Save the model to a file
-		osimModel.print("tugOfWar_model.osim");
+		osimModel.print("tugOfWar_model.osim");        
 
 		//////////////////////////
 		// PERFORM A SIMULATION //
@@ -290,8 +295,23 @@ int main()
 
 		// Initialize the system and get the default state
 		SimTK::State& si = osimModel.initSystem();
-		
-		// Enable constraint consistent with current configuration of the model
+		/*
+        OpenSim::AppearanceMap& aMap = osimModel.upd_ModelDisplay().upd_AppearanceMap();
+        const BodySet& bs = osimModel.getBodySet();
+        for (int i = 0; i < bs.getSize(); ++i){
+            const OpenSim::Body& b = bs.get(i);
+            int sz = b.getProperty_GeometrySet().size();
+            for (int j = 0; j < sz; ++j) {
+                GeometryAppearance ga;
+                const Geometry& nextGeom = b.get_GeometrySet(j);
+                ga.set_geometryID(b.get_GeometrySet(j).getPathID());
+                ga.set_Appearance(b.get_GeometrySet(j).getAppearance());
+                aMap.append_AppearanceList(ga);
+            }
+        }
+        osimModel.print("tugOfWar_model_withDisplay.osim");
+	*/
+        // Enable constraint consistent with current configuration of the model
 		constDist->setDisabled(si, false);
 
 		cout << "Start height = "<< h_start << endl;
